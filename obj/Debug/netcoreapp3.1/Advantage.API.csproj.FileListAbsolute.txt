@@ -1,0 +1,10 @@
+C:\Users\Wandumuzi.Mathunjwa\Tuts\API\Advantage.API\bin\Debug\netcoreapp3.1\appsettings.Development.json
+C:\Users\Wandumuzi.Mathunjwa\Tuts\API\Advantage.API\bin\Debug\netcoreapp3.1\appsettings.json
+C:\Users\Wandumuzi.Mathunjwa\Tuts\API\Advantage.API\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
+C:\Users\Wandumuzi.Mathunjwa\Tuts\API\Advantage.API\bin\Debug\netcoreapp3.1\Advantage.API.exe
+C:\Users\Wandumuzi.Mathunjwa\Tuts\API\Advantage.API\obj\Debug\netcoreapp3.1\Advantage.API.csprojAssemblyReference.cache
+C:\Users\Wandumuzi.Mathunjwa\Tuts\API\Advantage.API\obj\Debug\netcoreapp3.1\staticwebassets\Advantage.API.StaticWebAssets.Manifest.cache
+C:\Users\Wandumuzi.Mathunjwa\Tuts\API\Advantage.API\obj\Debug\netcoreapp3.1\staticwebassets\Advantage.API.StaticWebAssets.xml
+C:\Users\Wandumuzi.Mathunjwa\Tuts\API\Advantage.API\obj\Debug\netcoreapp3.1\Advantage.API.AssemblyInfoInputs.cache
+C:\Users\Wandumuzi.Mathunjwa\Tuts\API\Advantage.API\obj\Debug\netcoreapp3.1\Advantage.API.AssemblyInfo.cs
+C:\Users\Wandumuzi.Mathunjwa\Tuts\API\Advantage.API\obj\Debug\netcoreapp3.1\Advantage.API.RazorTargetAssemblyInfo.cache
