@@ -30,6 +30,12 @@ namespace Advantage.API
         {
             _connectionString = Configuration["connectionString"];
 
+            services.AddCors(options => options.AddPolicy("CorsPolicy",
+                c => c.AllowAnyOrigin()
+                .AllowAnyHeader()
+                .AllowAnyMethod())
+            );
+
             services.AddControllers();
 
             services.AddEntityFrameworkNpgsql().AddDbContext<ApiContext>(opt => opt.UseNpgsql(_connectionString));
@@ -44,6 +50,8 @@ namespace Advantage.API
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors("CorsPolicy");
 
             seed.SeedData(20, 1000);
 

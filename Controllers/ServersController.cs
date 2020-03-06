@@ -41,6 +41,29 @@ namespace Advantage.API.Controllers
             return server;
         }
 
+        [HttpPut("message/{id}")]
+        public IActionResult Message(int id,  [FromBody] ServerMessage msg)
+        {
+            var server = _context.Servers.Find(id);
+            if (server == null)
+            {
+                return NotFound();
+            }
+
+            if(msg.Payload == "activate")
+            {
+                server.IsOnline = true;
+                _context.SaveChanges();
+            }
+
+            if(msg.Payload == "deactivate")
+            {
+                server.IsOnline = false;
+            }
+            _context.SaveChanges();
+            return new NoContentResult();
+        }
+
         // PUT: api/Servers/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.

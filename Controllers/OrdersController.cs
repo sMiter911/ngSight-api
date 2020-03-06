@@ -27,18 +27,65 @@ namespace Advantage.API.Controllers
             return await _context.Orders.ToListAsync();
         }
 
+        // Get api/order/pagenNumber/pageSize
+        [HttpGet("{pageIndex:int}/{pageSize:int}")]
+        public IActionResult Get(int pageIndex, int pageSize)
+        {
+            var data = _context.Orders.Include(o => o.Customer).OrderByDescending(c => c.Placed);
+            var page = new PaginatedResponse<Order>(data, pageIndex, pageSize);
+            var totalCount = data.Count();
+            var totalPages = Math.Ceiling((double)totalCount / pageSize);
+            var response = new
+            {
+                Page = page,
+                TotalPages = totalPages
+            };
+
+            return Ok(response);
+        }
+
+        [HttpGet("ByProvince")]
+        public IActionResult ByProvince()
+        {
+            var orders = _context.Orders.Include(o => o.Customer).ToList();
+            var groupedResult = orders.GroupBy(o => o.Customer.Province).ToList().Select(grp => new
+            {
+                Province = grp.Key,
+                Total = grp.Sum(x => x.Total)
+
+            }).OrderByDescending(res => res.Total).ToList();
+
+            return Ok(groupedResult);
+        }
+
+        [HttpGet("ByCustomer/{n}")]
+        public IActionResult ByCustomer(int n)
+        {
+            var orders = _context.Orders.Include(o => o.Customer).ToList();
+            var groupedResult = orders.GroupBy(o => o.Customer.Id).ToList().Select(grp => new
+            {
+                _context.Customers.Find(grp.Key).Name,
+                Total = grp.Sum(x => x.Total)
+
+            }).OrderByDescending(res => res.Total).Take(n).ToList();
+
+            return Ok(groupedResult);
+        }
+
+
+
         // GET: api/Orders/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Order>> GetOrder(int id)
+        public IActionResult GetOrder(int id)
         {
-            var order = await _context.Orders.FindAsync(id);
+            var order = _context.Orders.Include(o => o.Customer).First(o => o.Id == id);
 
             if (order == null)
             {
                 return NotFound();
             }
 
-            return order;
+            return Ok(order);
         }
 
         // PUT: api/Orders/5
